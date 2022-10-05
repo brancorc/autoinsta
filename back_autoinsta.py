@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import QName
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -17,8 +18,8 @@ opciones.add_experimental_option("prefs", {
 
 driver = webdriver.Chrome(chrome_options=opciones, service=service)
 
-username="momoskratos"
-password="1622378459rcxd"
+nombre="momoskratos"
+contraseña="1622378459rcxd"
 
 def click_path(path):
 
@@ -28,12 +29,8 @@ def click_path(path):
 	        EC.presence_of_element_located((By.XPATH, path))
 	    )
 
-	    time.sleep(1)
-
-	    
-
 	finally:
-
+		time.sleep(1)
 		driver.find_element(By.XPATH, path).click()
 
 
@@ -45,30 +42,39 @@ def send_path(path, key):
 	        EC.presence_of_element_located((By.XPATH, path))
 	    )
 
-	    time.sleep(1)
-
-	    
-
 	finally:
-
+		
+		time.sleep(1)
 		driver.find_element(By.XPATH, path).send_keys(key)
 
 
-driver.get("https://business.facebook.com/latest/content_calendar?asset_id=105669625640630&nav_ref=bm_home_redirect")
+class autoinsta():
 
-send_path('//*[@id="email"]', username)
+	def __init__(self, username, password):  #inicia sesión
 
-send_path('//*[@id="pass"]', password)
+		driver.get("https://business.facebook.com/latest/content_calendar?asset_id=105669625640630&nav_ref=bm_home_redirect")
 
-click_path('//*[@id="loginbutton"]')
+		send_path('//*[@id="email"]', username)
 
-click_path('/html/body/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div[1]/div[2]/div/div[2]/div') 
+		send_path('//*[@id="pass"]', password)
 
-click_path('/html/body/div[1]/div[1]/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div[1]/div/div/div/div/div[2]/div/div') 
+		click_path('//*[@id="loginbutton"]')
 
-click_path('/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[3]/div/div[1]/div/span/div/div/div')
+	def programar_publicacion(self, fecha, hora):
 
-click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input")
+		click_path('/html/body/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div[1]/div[2]/div/div[2]/div') 
 
-click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[1]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input")
+		click_path('/html/body/div[1]/div[1]/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div[1]/div/div/div/div/div[2]/div/div') 
+	
+		send_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/input", fecha)
+creo que seleccionar el input desde otro xpath seria buena opcion para el clear
+
+		# click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input")
+
+		# click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[1]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input")
+
+
+ejecutar_bot=autoinsta(nombre, contraseña)
+
+ejecutar_bot.programar_publicacion("6/10/2022", "13:30")
 
