@@ -30,8 +30,9 @@ def click_path(path):
 	    )
 
 	finally:
-		time.sleep(1)
+		
 		driver.find_element(By.XPATH, path).click()
+		time.sleep(1)
 
 
 def send_path(path, key):
@@ -44,8 +45,9 @@ def send_path(path, key):
 
 	finally:
 		
-		time.sleep(1)
+		
 		driver.find_element(By.XPATH, path).send_keys(key)
+		time.sleep(1)
 
 
 class autoinsta():
@@ -65,9 +67,27 @@ class autoinsta():
 		click_path('/html/body/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div[1]/div[2]/div/div[2]/div') 
 
 		click_path('/html/body/div[1]/div[1]/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div[1]/div/div/div/div/div[2]/div/div') 
-	
+
+		click_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div")
+
+		click_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div")
+
+		input_fecha = driver.find_elements(By.XPATH , "/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/input")
+
+		input_fecha[0].send_keys(Keys.CONTROL + "a")
+		input_fecha[0].send_keys(Keys.DELETE)
+
 		send_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/input", fecha)
-creo que seleccionar el input desde otro xpath seria buena opcion para el clear
+
+		input_hora= driver.find_element(By.XPATH, "/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[2]/div/div/div[2]/div[1]/div/input")
+		print("ESTO ES EL input_hora::::", input_hora)
+		
+
+		time.sleep(1)
+
+		send_path(input_hora, "05")
+
+		#send_path(input_hora[0], "07")
 
 		# click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input")
 
@@ -76,5 +96,5 @@ creo que seleccionar el input desde otro xpath seria buena opcion para el clear
 
 ejecutar_bot=autoinsta(nombre, contraseña)
 
-ejecutar_bot.programar_publicacion("6/10/2022", "13:30")
+ejecutar_bot.programar_publicacion("11/10/2022", "13:30")
 
