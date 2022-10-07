@@ -21,6 +21,9 @@ driver = webdriver.Chrome(chrome_options=opciones, service=service)
 nombre="momoskratos"
 contraseña="1622378459rcxd"
 
+extensiones_imagen= [".jpg", ".png", ".gif", ".thiff", ".heif", ".webp", ".jpeg" ]
+extensiones_video= [".ogm",  ".mwn", ".mpg", ".webm", ".ogv", ".mov", ".asx", ".mpeg", ".mp4", ".m4v", ".avi"]
+
 def click_path(path):
 
 	try:
@@ -62,39 +65,57 @@ class autoinsta():
 
 		click_path('//*[@id="loginbutton"]')
 
-	def programar_publicacion(self, fecha, hora):
+	def programar_publicacion(self, fecha, hora, minuto, sistema_horario, descripcion, archivo):
 
-		click_path('/html/body/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div[1]/div[2]/div/div[2]/div') 
+		click_path('/html/body/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div[2]/div/div/div/div/div[2]/div/span/div/div[2]/div/div') #flecha para publicar
 
-		click_path('/html/body/div[1]/div[1]/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div[1]/div/div/div/div/div[2]/div/div') 
+		click_path('/html/body/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div[1]/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div[1]/div/div/div/div/div[2]/div/div') #crear publicacion
 
-		click_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div")
+# DE ACA PARA ABAJO AJUSTA LA PROGRAMACION
 
-		click_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div")
+		# click_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div")
 
-		input_fecha = driver.find_elements(By.XPATH , "/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/input")
+		# input_fecha = driver.find_elements(By.XPATH , "/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/input")
 
-		input_fecha[0].send_keys(Keys.CONTROL + "a")
-		input_fecha[0].send_keys(Keys.DELETE)
+		# input_fecha[0].send_keys(Keys.CONTROL + "a")
+		# input_fecha[0].send_keys(Keys.DELETE)
 
-		send_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/input", fecha)
+		# send_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[1]/div[2]/div/div/input", fecha)
 
-		input_hora= driver.find_element(By.XPATH, "/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[2]/div/div/div[2]/div[1]/div/input")
-		print("ESTO ES EL input_hora::::", input_hora)
-		
+		# time.sleep(1)
 
-		time.sleep(1)
+		# send_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[2]/div/div/div[2]/div[1]/div/input", hora)
 
-		send_path(input_hora, "05")
+		# send_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[2]/div/div/div[2]/div[2]/div/input", minuto)
 
-		#send_path(input_hora[0], "07")
+		# send_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[2]/div/div/div[2]/div[3]/div/input", sistema_horario)
 
-		# click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input")
+		# click_path("/html/body/div[4]/div[1]/div[1]/div/div/div/div/div[3]/div/div[2]/div/span/div/div/div")
 
-		# click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[1]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input")
+#DE ACA PARA  ARRIBA AJUSTA LA PROGRAMACION
+
+		time.sleep(10) #cambiar esto por uno mejor, seguir intentando si puedo meter la imagen y, de no ser asi, probar entrando a programar publicaciones desde otro lado
+
+		click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input") #activa instagram
+
+		click_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[1]/div/div/label/div/div/div[1]/div[1]/div/div[1]/input") #desactiva facebook
+
+		send_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div", descripcion) #pone la descripcion
+
+
+		for i in extensiones_imagen:
+
+			if i in archivo:
+
+				print("ENTRO EN EL IF I IN ARCHIVO")
+
+				send_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[5]/div[1]/div/a", archivo)
+				send_path("/html/body/div[3]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div/div/div/div[5]/div[1]/div/a", archivo)
+
+
 
 
 ejecutar_bot=autoinsta(nombre, contraseña)
 
-ejecutar_bot.programar_publicacion("11/10/2022", "13:30")
+ejecutar_bot.programar_publicacion("11/10/2022", 4, 20, "p", "imagen de prueba bro", "C:/Users/branc/OneDrive/Escritorio/autoinsta/meme.jpg")
 
